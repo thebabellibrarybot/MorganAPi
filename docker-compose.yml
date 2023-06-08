@@ -1,0 +1,21 @@
+version: '3'
+
+services:
+  db:
+    image: mysql:latest
+    environment:
+      MYSQL_DATABASE: morgan
+      MYSQL_USER: root
+      MYSQL_PASSWORD: your_password
+      MYSQL_ROOT_PASSWORD: your_password
+    volumes:
+      - ./database_backup.sql:/docker-entrypoint-initdb.d/database_backup.sql
+    ports:
+      - 3306:3306
+
+  api:
+    build: .
+    ports:
+      - 8080:8080
+    depends_on:
+      - db
