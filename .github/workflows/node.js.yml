@@ -1,0 +1,40 @@
+name: Deploy to EC2
+
+on:
+  push:
+    branches:
+      - main
+
+env:
+  EC2_HOST: your_ec2_instance_ip
+  EC2_USERNAME: your_ec2_username
+  RDS_HOST: your_rds_endpoint
+  RDS_USERNAME: your_rds_username
+  RDS_PASSWORD: your_rds_password
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Install AWS CLI
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y awscli
+
+      - name: Configure AWS credentials
+        run: |
+          aws configure set aws_access_key_id ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws configure set aws_secret_access_key ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws configure set default.region us-east-1
+
+      - name: Copy Docker Compose file to EC2 instance
+        run: |
+          scp -i path/to/your/private_key.pem docker-compose.yml ${{ env.EC2_USERNAME }}@${{ env.EC2_HOST }}:/home/${{ env.EC2_USERNAME }}/docker-compose.yml
+
+      - name: SSH to EC2 instance and deploy
+        run: |
+          ssh -i path/to/your/private_key.pem ${{ env.EC2_USERNAME }}@${{ env.EC2_HOST }} 'docker-compose -f /home/${{ env.EC2_USERNAME }}/docker-compose.yml up -d'
