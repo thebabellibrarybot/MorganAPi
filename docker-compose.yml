@@ -5,11 +5,16 @@ services:
     build:
       context: ./DB
     environment:
-      MYSQL_DATABASE: morgan
+      - MYSQL_DATABASE=morgan
+      - MYSQL_USER=mumbot
+      - MYSQL_PASSWORD=123456
+      - MYSQL_ROOT_PASSWORD=root_password
     volumes:
       - ./DB/database_backup.sql:/docker-entrypoint-initdb.d/database_backup.sql
     ports:
       - 3306:3306
+    networks:
+      - morganapi_network
 
   api:
     build:
@@ -18,3 +23,8 @@ services:
       - 8080:8080
     depends_on:
       - db
+    networks:
+      - morganapi_network
+
+networks:
+  morganapi_network:
