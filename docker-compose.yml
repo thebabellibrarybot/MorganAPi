@@ -6,9 +6,6 @@ services:
       context: ./DB
     environment:
       MYSQL_DATABASE: morgan
-      MYSQL_USER: root
-      MYSQL_PASSWORD: your_password
-      MYSQL_ROOT_PASSWORD: your_password
     volumes:
       - ./DB/database_backup.sql:/docker-entrypoint-initdb.d/database_backup.sql
     ports:
