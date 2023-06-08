@@ -1,6 +1,6 @@
-module.export = (sequilze, DataTypes) => {
+module.exports = (sequelize, DataTypes) => {
 
-    const Tombs = sequilze.define('tombs', {
+    const Tombs = sequelize.define('tombs', {
         tomb_id: {
             type: DataTypes.STRING,
             allowNull: false,

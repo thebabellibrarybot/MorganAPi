@@ -7,13 +7,23 @@ var corsOptions = {
     origin: 'http://localhost:8081'
 };
 
+// midleware 
+
 app.use(cors(corsOptions));
 
 app.use(express.json());
 
 app.use(express.urlencoded({ extended: true }));
 
+// routes
+
+const tombRouter = require('./routes/tombRouter');
+
+app.use('/api/tombs', tombRouter);
+
+
 // testing api
+
 app.get('/', (req, res) => {
     res.json({ message: "Welcome to the API" });
 }

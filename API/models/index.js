@@ -4,8 +4,9 @@ const { Sequelize, DataTypes } = require('sequelize');
 
 const sequelize = new Sequelize(
     dbConfig.DB, 
-    dbConfig.USER, 
-    dbConfig.PASSWORD, {
+    dbConfig.USER,
+    dbConfig.PASSWORD,
+    {
         host: dbConfig.HOST,
         dialect: dbConfig.dialect,
         operatorsAliases: false,
@@ -21,7 +22,7 @@ sequelize.authenticate().then(() => {
     console.log('Connection has been established successfully.');
 }
 ).catch(err => {
-    console.error('Unable to connect to the database:', err);
+    console.error('Unable to connect to the database XXX:', err ,'\n', 'err from index.js', '\n', '\n');
 }
 );
 
@@ -39,4 +40,4 @@ db.sequelize.sync({ force: false })
     }
 );
 
-module.exports = db;
+module.exports = db; 
