@@ -2,11 +2,11 @@
 
 Basic database complied of data from historic manuscript archives. 
 
-##### Schema
+### Schema
 
 ##### Table: Tombs
 
-    All digital tombs found via web scrappers.
+  All digital tombs found via web scrappers.
 
 Books:
   tomb_id VARCHAR(255) PRIMARY KEY,
@@ -16,7 +16,7 @@ Books:
 
 ##### Table: Folios
 
-    Pages found in each of the tombs. Foreign key in tomb_id joins folios their tombs.
+  Pages found in each of the tombs. Foreign key in tomb_id joins folios their tombs.
 
 Folios:
   folio VARCHAR(255) PRIMARY KEY,
@@ -30,10 +30,10 @@ Folios:
   INDEX idx_tomb_id (tombId)
 
 ##### Docker Commands
-'''
+```
 docker build -t my_mysql_image .
 docker run -d --name my_mysql_container -p 3306:3306 my_mysql_image
-''' shell
+``` shell
 
 These commands build a Docker image called my_mysql_image and then run it in a container named my_mysql_container on port 3306.
 
