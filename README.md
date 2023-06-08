@@ -12,29 +12,29 @@ Docker: Make sure you have Docker installed on your system.
 Setup
 Clone the repository:
 
-'''
+```shell
 git clone https://github.com/thebabellibrarybot/MorganAPi.git
 
 cd MorganAPi
-''' bash
+```
 
 Build the Docker image for the Node API:
 
-'''
+```shell
 docker build -t my-node-api .
-''' perl
+```
 
 Start the Docker container for the MySQL database using Docker Compose:
 
-'''
+```shell
 docker-compose up -d
-''' bash
+``` 
 
 Once the database container is up and running, start the Node API container:
 
-'''
+```perl
 docker run -p 8080:8080 --name my-node-api-container --link my-mysql-container:mysql -d my-node-api
-''' perl
+```
 
 This command links the Node API container with the MySQL container using Docker networking.
 
