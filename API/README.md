@@ -33,7 +33,7 @@ docker-compose up -d
 Once the database container is up and running, start the Node API container:
 
 ```perl
-docker run -p 8080:8080 --name my-node-api-container --link my-mysql-container:mysql -d my-node-api
+docker run -p 8080:8080 --name my-node-api my-node-api-container --link my-mysql-container:mysql -d my-node-api
 ```
 
 This command links the Node API container with the MySQL container using Docker networking.
