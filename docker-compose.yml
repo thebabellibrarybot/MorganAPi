@@ -4,10 +4,11 @@ services:
   db:
     build:
       context: ./DB
+    restart: unless-stopped
     environment:
       - MYSQL_DATABASE=morgan
       - MYSQL_USER=mumbot
-      - MYSQL_PASSWORD=123456
+      - MYSQL_PASSWORD=123https://www.bezkoder.com/docker-compose-nodejs-mysql/456
       - MYSQL_ROOT_PASSWORD=root_password
     volumes:
       - ./DB/database_backup.sql:/docker-entrypoint-initdb.d/database_backup.sql
@@ -19,6 +20,7 @@ services:
   api:
     build:
       context: ./API
+    restart: unless-stopped
     ports:
       - 8080:8080
     depends_on:
@@ -28,3 +30,5 @@ services:
 
 networks:
   morganapi_network:
+
+  # bib https://www.bezkoder.com/docker-compose-nodejs-mysql/
