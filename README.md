@@ -43,7 +43,7 @@ The API provides several endpoints to interact with the database. Below are the 
 
 `GET /api/pages/:id`: Retrives a specific page by its ID.
 
-Make HTTP requests to the above endpoints using tools like cURL or Postman to interact with the API and perform CRUD operations on the database.
+Make HTTP requests to the above endpoints using tools like cURL or Postman to interact with the API and view data operations from the database.
 
 #### License:
 This project is licensed under the MIT License.
