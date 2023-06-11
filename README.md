@@ -36,8 +36,11 @@ The Node API should now be running and accessible at http://localhost:8080.
 The API provides several endpoints to interact with the database. Below are the available routes:
 
 `GET /api/books`: Retrieves all books from the database.
-`GET /api/books/`:id: Retrieves a specific book by its ID.
+
+`GET /api/books/:id` Retrieves a specific book by its ID.
+
 `GET /api/pages`: Retrives all pages from the database.
+
 `GET /api/pages/:id`: Retrives a specific page by its ID.
 
 Make HTTP requests to the above endpoints using tools like cURL or Postman to interact with the API and perform CRUD operations on the database.
