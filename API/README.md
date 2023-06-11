@@ -1,60 +1,67 @@
-# Morgan Library API with Dockerized MySQL Database:
+# Morgan Library API
 
-This is a basic Node.js API that is dockerized and designed to work with a MySQL database. It provides a simple interface to interact with the database using HTTP requests.
+This repository contains a Node.js API built with Docker support. It provides a basic structure for creating a Node.js API and running it as a Docker container.
 
-### Getting Started:
+## Prerequisites
 
-To run the Node API and connect it to the Dockerized MySQL database, follow the steps below:
+- Docker: Make sure you have Docker installed on your machine. You can download and install Docker from the official Docker website: [https://www.docker.com/](https://www.docker.com/)
 
-#### Prerequisites:
+## Usage
 
-Docker: Make sure you have Docker installed on your system.
-Setup
-Clone the repository:
+To use the Node.js API locally, follow these steps:
 
-```shell
-git clone https://github.com/thebabellibrarybot/MorganAPi.git
+1. Clone the repository to your local machine:
 
-cd MorganAPi
-```
+   ```bash
+   git clone https://github.com/your-username/node-api.git
+   ```
 
-Build the Docker image for the Node API:
+2. Navigate to the cloned repository:
 
-```shell
-docker build -t my-node-api .
-```
+   ```bash
+   cd node-api
+   ```
 
-Start the Docker container for the MySQL database using Docker Compose:
+3. Build the Docker image:
 
-```shell
-docker-compose up -d
-``` 
+   ```bash
+   docker build -t my-node-api .
+   ```
 
-Once the database container is up and running, start the Node API container:
+4. Run the Docker container:
 
-```perl
-docker run -p 8080:8080 --name my-node-api my-node-api-container --link my-mysql-container:mysql -d my-node-api
-```
+   ```bash
+   docker run -p 8080:8080 --name my-node-api-container -d my-node-api
+   ```
 
-This command links the Node API container with the MySQL container using Docker networking.
+   The Node.js API will be accessible at [http://localhost:8080](http://localhost:8080).
 
-The Node API should now be running and accessible at http://localhost:8080.
+## Deployment to AWS ECR
 
-### API Usage:
-The API provides several endpoints to interact with the database. Below are the available routes:
+To deploy the Node.js API to AWS ECR, you'll need an AWS account and the AWS CLI configured on your machine. Follow these steps:
 
-`GET /api/books`: Retrieves all books from the database.
-`GET /api/books/`:id: Retrieves a specific book by its ID.
-`POST /api/books`: Creates a new book in the database.
-`PUT /api/books/:id`: Updates an existing book by its ID.
-`DELETE /api/books/:id`: Deletes a book from the database by its ID.
-Make HTTP requests to the above endpoints using tools like cURL or Postman to interact with the API and perform CRUD operations on the database.
+1. Build the Docker image as mentioned in the Usage section.
 
-#### License:
-This project is licensed under the MIT License.
+2. Tag the Docker image with your AWS ECR repository URL:
 
-#### Stack:
-Node.js
-Express
-MySQL
-Docker
+   ```bash
+   docker tag my-node-api:latest aws_account_id.dkr.ecr.region.amazonaws.com/my-node-api:latest
+   ```
+
+   Replace `aws_account_id`, `region`, and `my-node-api` with your AWS account ID, preferred region, and desired repository name.
+
+3. Log in to your AWS ECR repository:
+
+   ```bash
+   aws ecr get-login-password --region region | docker login --username AWS --password-stdin aws_account_id.dkr.ecr.region.amazonaws.com
+   ```
+
+   Replace `region` and `aws_account_id` with your preferred region and AWS account ID.
+
+4. Push the Docker image to AWS ECR:
+
+   ```bash
+   docker push aws_account_id.dkr.ecr.region.amazonaws.com/my-node-api:latest
+   ```
+
+5. The Node.js API Docker image is now available in your AWS ECR repository and can be used in AWS services like ECS (Elastic Container Service) or EKS (Elastic Kubernetes Service).
