@@ -43,5 +43,3 @@ docker run -d --name my_mysql_container -p 3306:3306 my_mysql_image
 These commands build a Docker image called my_mysql_image and then run it in a container named my_mysql_container on port 3306.
 
 Please let me know if there's anything else I can help you with!
-
-mysql -h localhost -P 3306 -u root -p
