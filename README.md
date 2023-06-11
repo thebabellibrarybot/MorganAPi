@@ -1,6 +1,6 @@
 # Morgan Library API with Dockerized MySQL Database:
 
-This is a basic Node.js API that is dockerized and designed to work with a MySQL database. It provides a simple interface to interact with the database using HTTP requests.
+This is a basic Node.js API that is dockerized with a MySQL database. It provides a simple interface to interact with the database using HTTP requests.
 
 ### Getting Started:
 
@@ -30,14 +30,6 @@ Start the Docker container for the MySQL database using Docker Compose:
 docker-compose up -d
 ``` 
 
-Once the database container is up and running, start the Node API container:
-
-```perl
-docker run -p 8080:8080 --name my-node-api-container --link my-mysql-container:mysql -d my-node-api
-```
-
-This command links the Node API container with the MySQL container using Docker networking.
-
 The Node API should now be running and accessible at http://localhost:8080.
 
 ### API Usage:
@@ -45,9 +37,9 @@ The API provides several endpoints to interact with the database. Below are the 
 
 `GET /api/books`: Retrieves all books from the database.
 `GET /api/books/`:id: Retrieves a specific book by its ID.
-`POST /api/books`: Creates a new book in the database.
-`PUT /api/books/:id`: Updates an existing book by its ID.
-`DELETE /api/books/:id`: Deletes a book from the database by its ID.
+`GET /api/pages`: Retrives all pages from the database.
+`GET /api/pages/:id`: Retrives a specific page by its ID.
+
 Make HTTP requests to the above endpoints using tools like cURL or Postman to interact with the API and perform CRUD operations on the database.
 
 #### License:
